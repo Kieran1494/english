@@ -36,7 +36,7 @@ body {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
-.right {
+.left {
     position: absolute;
     right: 0px;
     width: 300px;
@@ -47,7 +47,7 @@ body {
     overflow: auto;
 }
 div image{
-    align: right;
+    align: left;
 }
 
 
