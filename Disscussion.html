@@ -1,58 +1,8 @@
 <!DOCTYPE html>
 <html>
-<style>
-body {
-    font-family: "Calibri", sans-serif;
-	background-color: #98FB98;
-}
-.sidenav {
-    display: none;
-    height: 100%;
-    width: 250px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    padding-top: 60px;
-}
-.sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s
-}
-.sidenav a:hover, .offcanvas a:focus{
-    color: #f1f1f1;
-}
-.sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-}
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-.right {
-    position: absolute;
-    right: 0px;
-    width: 300px;
-    border: 3px solid #73AD21;
-    padding: 10px;
-}
-.clearfix {
-    overflow: auto;
-}
-div image{
-    align: right;
-}
-</style>
+<head>
+  <link rel="stylesheet" href="Sytle.css">
+</head>
 <body>
 
 
@@ -70,6 +20,29 @@ div image{
 
 
 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
+ <script>
+$(function(){
+    $("#form").submit(function(e){
+        // Create data object
+        var data = {};
+        data.name = $("#name").val();
+        data.email = $("#email").val();
+        data.comment = $("#comment").val();
+        // The url of your server-side script that handles the post submission
+        var url = "http://www.someurl.com/post_comment.php";
+        $.POST(url, data)
+        .done(function(response){
+            // This code executes when the server returns a response
+            // Do something with the response like adding the comment to the current list of comments
+            // Example (if your response is HTML, better would be a JSON string):
+            $("#comments").append(response);
+        });
+        e.preventDefault();
+    });
+});
+<noscript>Sorry, your browser does not support JavaScript!</noscript> 
+</script>
+
 
 <script>
 function openNav() {
@@ -82,36 +55,23 @@ function closeNav() {
 	document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft= "0";
 }
+<noscript>Sorry, your browser does not support JavaScript!</noscript> 
 </script>
 <div align="left" id="main">
 <h1><font size="16">Discussion</font></h1>
-	<li>
-<div><a href="javascript:void(0);"><img src="images/pikabob.png" width="55" height="55" alt="pikabob photo avatar"></a></div>
-<div>
-<header><a href="javascript:void(0);">Pikabob</a> - <span>posted 6 days ago</span></header>
-<p>Listen you are going to get a kick out of this one. I've got to tell one of the funniest jokes of all time.</a></p>
-</div>
-</li>
+<form id="form" action="javascript:void('');" class="add_comment">
 
-
-
-<li>
-  <div><a href="javascript:void(0);"><img src="images/dark-cubes.png" width="55" height="55" alt="DarkCubes photo avatar"></a></div>
-  <div>
-    <header><a href="javascript:void(0);">DarkCubes</a> - <span>posted 1 week ago</span></header>
-    <p>Ut nec interdum libero. Sed felis lorem, venenatis sed malesuada vitae, tempor vel turpis. Mauris in dui velit, vitae mollis risus. Cras lacinia lorem sit amet augue mattis vel cursus enim laoreet. Vestibulum faucibus scelerisque nisi vel sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pellentesque massa ac justo tempor eu pretium massa accumsan. In pharetra mattis mi et ultricies. Nunc vel eleifend augue. Donec venenatis egestas iaculis.</p>
-  </div>
-  <ul>
-    <li>
-      <div><a href="javascript:void(0);"><img src="images/pig.png" width="55" height="55" alt="Sir_Pig photo avatar"></a></div>
-      <div>
-      <header><a href="javascript:void(0);">Sir_Pig</a> - <span>posted 1 day ago</span></header>
-      <p>Sed felis lorem, venenatis sed malesuada vitae, tempor vel turpis. Mauris in dui velit, vitae mollis risus.</p>
-      <p>Morbi id neque nisl, nec fringilla lorem. Duis molestie sodales leo a blandit. Mauris sit amet ultricies libero. Etiam quis diam in lacus molestie fermentum non vel quam.</p>
-      </div> 
-    </li>
-  </ul>
-</li>
+        <label>Name
+          <input id="name" type="string" name="name">
+        </label><br>
+        <label>Email
+          <input id="email" type="string" name="email">
+        </label><br>
+        <label>Comment
+         <textarea id="comment" name="comment"></textarea>
+        </label>
+        <input type="submit" value="Add Comment">
+      </form>
 
 </div>
 
