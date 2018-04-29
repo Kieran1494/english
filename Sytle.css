@@ -49,6 +49,10 @@ body {
 div image{
     align: center;
 }
+img.center {
+    display: block;
+    margin: 0 auto;
+}
 
 
 
